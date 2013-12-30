@@ -50,9 +50,12 @@ need_push () {
 rb_prompt(){
   if (( $+commands[rbenv] ))
   then
-	  echo "%{$fg_bold[yellow]%}$(rbenv version | awk '{print $1}')%{$reset_color%}"
-	else
-	  echo ""
+    echo "%{$fg_bold[yellow]%}$(rbenv version | awk '{print $1}')%{$reset_color%}"
+  elif (( $+commands[rvm] ))
+  then
+    echo "%{$fg_bold[yellow]%}$(rvm current | awk '{print $1}')%{$reset_color%}"
+  else
+    echo ""
   fi
 }
 
